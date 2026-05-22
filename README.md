@@ -1,86 +1,27 @@
-<style>
-  .profile-container {
-    display: inline-block;
-    text-align: center;
-    margin: 10px;
-  }
-
-  .profile-img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    padding: 5px;
-    background: linear-gradient(45deg, #00f7ff, #ff00c8, #00ff88);
-    background-size: 400% 400%;
-    animation: neonBorder 6s linear infinite;
-  }
-
-  .profile-img img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    display: block;
-  }
-
-  @keyframes neonBorder {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-  .profile-title {
-    color: white;
-    font-weight: bold;
-    margin-top: 5px;
-  }
-
-  body {
-    background-color: #0a0a0a;
-    font-family: Arial, sans-serif;
-    text-align: center;
-  }
-
-  h3 {
-    color: #ffffff;
-  }
-</style>
-
 ### 🦩 Propietario
-<div class="profile-container">
+<p align="center">
   <a href="https://github.com/s3nju-best">
-    <div class="profile-img">
-      <img src="https://github.com/s3nju-best.png?size=150">
-    </div>
+    <img src="https://github.com/s3nju-best.png?size=150"
+    style="border-radius:50%; border: 4px solid #00f7ff; box-shadow: 0 0 15px #00f7ff, 0 0 30px #ff00c8;">
   </a>
-</div>
+</p>
 
-### 🌺 Creditos Principales
-<div class="profile-container">
+### 🌺 Créditos Principales
+<p align="center">
+
   <a href="https://github.com/DevZyxlJs">
-    <div class="profile-img">
-      <img src="https://github.com/DevZyxlJs.png?size=100">
-    </div>
+    <img src="https://github.com/DevZyxlJs.png?size=100"
+    style="border-radius:50%; border: 3px solid #00ff88; box-shadow: 0 0 10px #00ff88;">
   </a>
-</div>
 
-<div class="profile-container">
   <a href="https://github.com/AzamiJs">
-    <div class="profile-img">
-      <img src="https://github.com/AzamiJs.png?size=100">
-    </div>
+    <img src="https://github.com/AzamiJs.png?size=100"
+    style="border-radius:50%; border: 3px solid #ff00c8; box-shadow: 0 0 10px #ff00c8;">
   </a>
-</div>
 
-<div class="profile-container">
   <a href="https://github.com/CheirZ">
-    <div class="profile-img">
-      <img src="https://github.com/CheirZ.png?size=100">
-    </div>
+    <img src="https://github.com/CheirZ.png?size=100"
+    style="border-radius:50%; border: 3px solid #00f7ff; box-shadow: 0 0 10px #00f7ff;">
   </a>
-</div>
+
+</p>
