@@ -1,4 +1,4 @@
-### 🦩 Propietario
+t### 🦩 Propietario
 <p align="center">
   <a href="https://github.com/s3nju-best">
     <img src="https://github.com/s3nju-best.png?size=150"
@@ -25,3 +25,24 @@
   </a>
 
 </p>
+
+---------
+
+## <img src="https://i.pinimg.com/originals/73/69/6e/73696e022df7cd5cb3d999c6875361dd.gif" alt="Características" width="42" height="42"> Características
+
+> Botcita en creación, se agregaran nuevos comandos constantemente
+
+
+- [x] Configuración de grupo
+- [x] Antilink, antiestados, etc
+- [x] Bienvenida personalizada
+- [x] Crear sticker de image/video/gif/url
+- [x] SubBot (Jadibot)
+- [x] Juego RPG
+- [x]  New RPG
+- [x]  Juego Gacha
+- [x] Descarga de música y video de YT
+- [x] convertidores de img/pdf/videos
+- [ ] Otros
+
+---------
