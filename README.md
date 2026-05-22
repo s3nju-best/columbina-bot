@@ -1,6 +1,6 @@
 <h1 align="center">COLUMBINA MD</p>
 <p>
-        <img src= "https://raw.githubusercontent.com/StarlightsTeam/Ai-Hoshino/main/storage/img/menu.jpg">
+        <img src= "https://raw.githubusercontent.com/s3nju-best/columbina-bot/main/columbina.jpg">
     </p>
     <p align="center">
         <a href="#"><img title="simple-whatsapp-bot" src="https://img.shields.io/badge/-WHATSAPP--BOT-green?colorA=%23ff0000&colorB=%23017e40&style=for-the-badge"></a>
@@ -50,6 +50,6 @@
 - [x]  Juego Gacha
 - [x] Descarga de música y video de YT
 - [x] convertidores de img/pdf/videos
-- [ ] Otros
+- [ ] MAS COMANDOS PRÓXIMAMENTE 
 
 ---------
