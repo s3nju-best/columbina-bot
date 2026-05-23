@@ -14,12 +14,15 @@ export default {
     let list = []
 
     for (let p of participants) {
-      const user = chatUsers[p.id] || {}
+      const jid = p.id || p.jid || p.phoneNumber || p.lid
+      if (!jid) continue
+
+      const user = chatUsers[jid] || {}
       const totalMsgs = user.stats
         ? Object.values(user.stats).reduce((acc, day) => acc + (day.msgs || 0), 0)
         : 0
 
-      list.push({ totalMsgs })
+      list.push({ jid, totalMsgs })
     }
 
     list.sort((a, b) => b.totalMsgs - a.totalMsgs)
@@ -28,9 +31,9 @@ export default {
     text += `*Total de miembros:* ${list.length}\n\n`
 
     list.forEach((u, i) => {
-      text += `${i + 1}. *${u.totalMsgs}* msgs\n`
+      text += `${i + 1}. @${u.jid.split('@')[0]} ➜ *${u.totalMsgs}* msgs\n`
     })
 
-    await columbina2(client, m, text, [], m)
+    await columbina2(client, m, text, list.map(v => v.jid), m)
   }
 }
