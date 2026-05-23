@@ -1,5 +1,5 @@
 export default {
-  command: ['mismensajes', 'susmensajes'],
+  command: ['susmensajes'],
   category: 'grupo',
   isAdmin: true,
   run: async (client, m, args) => {
