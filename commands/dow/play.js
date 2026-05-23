@@ -1,4 +1,5 @@
 //robado de diamond 
+//contiene errores se solunara mad adelante cuando bo me de paja
 import yts from 'yt-search'
 import fetch from 'node-fetch'
 import sharp from 'sharp'
