@@ -1,4 +1,4 @@
-global.kickTempQueue ||= new Map()
+if (!global.kickTempQueue) global.kickTempQueue = new Map()
 
 export default {
   command: ['kicktemp', 'tempkick', 'expulsartemp'],
@@ -45,13 +45,8 @@ export default {
     else if (unit === 'm') { ms = value * 60000; unitName = 'minutos' }
     else if (unit === 'h') { ms = value * 3600000; unitName = 'horas' }
 
-    if (ms < 1000) {
-      return await columbina2(client, m, '🚩 El tiempo mínimo es 1 segundo.', [], m)
-    }
-
-    if (ms > 86400000) {
-      return await columbina2(client, m, '🚩 El tiempo máximo permitido es 24 horas (24h).', [], m)
-    }
+    if (ms < 1000) return await columbina2(client, m, '🚩 El tiempo mínimo es 1 segundo.', [], m)
+    if (ms > 86400000) return await columbina2(client, m, '🚩 El tiempo máximo permitido es 24 horas (24h).', [], m)
 
     const mentionNumber = target.split('@')[0]
     const key = `${m.chat}:${target}`
@@ -82,7 +77,6 @@ export default {
         )
 
         global.kickTempQueue.delete(key)
-        console.log(`[ ⏱️ KICK TEMP ] Se eliminó a ${mentionNumber} de ${m.chat}`)
       } catch (error) {
         console.error('Error en kicktemp:', error)
         await columbina2(
