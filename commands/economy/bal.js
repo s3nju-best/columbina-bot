@@ -43,7 +43,3 @@ export default {
     await columbina2(client, m, bal, [who], m)
   }
 };
-
-Cancelar
-Guardar
-🎧
