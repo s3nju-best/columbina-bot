@@ -1,4 +1,4 @@
-global.kickTempQueue ||= new Map()
+if (!global.kickTempQueue) global.kickTempQueue = new Map()
 
 export default {
   command: ['kickcancelar', 'cancelkick', 'desexpulsar'],
