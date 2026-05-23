@@ -1,0 +1,98 @@
+import moment from 'moment-timezone';
+import { resolveLidToRealJid } from "../../columbina/lib/utils.js"
+import fetch from 'node-fetch'; 
+
+export default {
+  command: ['profile', 'perfil'],
+  category: 'rpg',
+  run: async (client, m) => {
+    const texto = m.mentionedJid
+    const who2 = texto.length > 0 ? texto[0] : m.quoted ? m.quoted.sender : m.sender
+    const userId = await resolveLidToRealJid(who2, client, m.chat);
+
+    const chat = global.db.data.chats[m.chat] || {}
+    const chatUsers = chat.users || {}
+    const globalUsers = global.db.data.users || {}
+    const userss = global.db.data.chats[m.chat].users[userId] || {}
+
+    if (!userss) {
+      return m.reply('🫛 El usuario *mencionado* no está *registrado* en el bot')
+    }
+
+    const idBot = client.user.id.split(':')[0] + '@s.whatsapp.net' || ''
+    const settings = global.db.data.settings[idBot] || {}
+    const currency = settings.currency || ''
+
+    const user = chatUsers[userId] || {}
+    const user2 = globalUsers[userId] || {}
+
+    const name = user2.name || ''
+    const birth = user2.birth || 'Sin especificar'
+    const genero = user2.genre || 'Oculto'
+    const comandos = user2.usedcommands || '0'
+    const pareja = user2.marry ? `${globalUsers[user2.marry]?.name || 'Alguien'}` : 'Nadie'
+    const estadoCivil =
+      genero === 'Mujer' ? 'Casada con' : genero === 'Hombre' ? 'Casado con' : 'Casadx con'
+    const desc = user2.description ? `\n\n${user2.description}` : ''
+    const pasatiempo = user2.pasatiempo ? `${user2.pasatiempo}` : 'No definido'
+    const exp = user2.exp || 0
+    const nivel = user2.level || 0
+    const chocolates = user.coins || 0
+    const banco = user.bank || 0
+    const totalCoins = chocolates + banco
+    const harem = user?.characters?.length || 0
+
+    const perfil = await client
+      .profilePictureUrl(userId, 'image')
+      .catch((_) => 'https://cdn.stellarwa.xyz/files/1751246122292.jpg')
+
+    let imageBuffer;
+    try {
+      const response = await fetch(perfil);
+      imageBuffer = Buffer.from(await response.arrayBuffer());
+    } catch (error) {
+      imageBuffer = Buffer.alloc(0); 
+    }
+
+    const users = Object.entries(globalUsers).map(([key, value]) => ({ ...value, jid: key }))
+    const sortedLevel = users.sort((a, b) => (b.level || 0) - (a.level || 0))
+    
+    try {
+      const rank = sortedLevel.findIndex((u) => u.jid === userId) + 1
+
+      const profileText = `- ׄ　ꕤ　ׅ　🐹 ໌　۟　𝖯𝖾𝗋𝖿𝗂𝗅　ׅ　팅화　ׄ
+
+𖣣ֶㅤ֯⌗ 🌾 ׄ ⬭ Cumpleaños › *${birth}*
+𖣣ֶㅤ֯⌗ 🌾 ׄ ⬭ Pasatiempo › *${pasatiempo}*
+𖣣ֶㅤ֯⌗ 🌾 ׄ ⬭ Género › *${genero}*
+𖣣ֶㅤ֯⌗ 🌾 ׄ ⬭ ${estadoCivil} › *${pareja}*${desc}
+
+𖣣ֶㅤ֯⌗ 🫖̷ ׄ ⬭ Nivel › *${nivel}*
+𖣣ֶㅤ֯⌗ 🫖̷ ׄ ⬭ Experiencia › *${exp.toLocaleString()}*
+𖣣ֶㅤ֯⌗ 🫖̷ ׄ ⬭ Puesto › *#${rank}*
+
+𖣣ֶㅤ֯⌗ 🌱 ׄ ⬭ Harem › *${harem.toLocaleString()}*
+𖣣ֶㅤ֯⌗ 🪙̷  ׄ ⬭ Dinero Total › *¥${totalCoins.toLocaleString()} ${currency}*
+𖣣ֶㅤ֯⌗ 🚩̷  ׄ ⬭ Comandos ejecutados › *${comandos.toLocaleString()}*`
+
+      const finalMentions = [userId];
+
+      return await client.sendMessage(m.chat, {
+        document: imageBuffer,
+        mimetype: 'image/png', 
+        fileName: global.columbina || 'perfil.png',
+        fileLength: 666000000, 
+        jpegThumbnail: imageBuffer, 
+        caption: profileText,
+        mentions: finalMentions, 
+        contextInfo: {
+          ...global.rcanal?.contextInfo, 
+        }
+      }, { quoted: m });
+
+    } catch (e) {
+      console.error(e)
+      m.reply(global.msgglobal || 'Ocurrió un error al cargar el perfil.')
+    }
+  }
+};
