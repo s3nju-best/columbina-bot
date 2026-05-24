@@ -68,9 +68,9 @@ ${readMore}
 
       const miOrden = [
          '𓆩ꨄ︎𓆪MENU GENERAL𓆩ꨄ︎𓆪',
+        '𓆩ꨄ︎𓆪INTELIGENCIA ARTIFICIAL𓆩ꨄ︎𓆪',
         '𓆩ꨄ︎𓆪MENU GRUPOS𓆩ꨄ︎𓆪',
         '𓆩ꨄ︎𓆪MENU ON / OFF𓆩ꨄ︎𓆪',
-        '𓆩ꨄ︎𓆪MENU ARTIFICIAL𓆩ꨄ︎𓆪',
         '𓆩ꨄ︎𓆪MENU DESCARGAS𓆩ꨄ︎𓆪',
         '𓆩ꨄ︎𓆪MENU BUSCADORES𓆩ꨄ︎𓆪',
         '𓆩ꨄ︎𓆪MENU HERRAMIENTAS𓆩ꨄ︎𓆪',
