@@ -1,6 +1,6 @@
 export default {
   command: ['totalgrupos', 'allgroups', 'gruposall'],
-  category: 'info',
+  category: 'general',
 
   run: async (client, m) => {
     try {
