@@ -26,6 +26,7 @@ export default {
         buscador: '𓆩ꨄ︎𓆪MENU BUSCADORES𓆩ꨄ︎𓆪',
         rpg: '𓆩ꨄ︎𓆪MENU JUEGOS RPG𓆩ꨄ︎𓆪',
         gacha: '𓆩ꨄ︎𓆪MENU GACHA/RW𓆩ꨄ︎𓆪',
+        anime: '𓆩ꨄ︎𓆪MENU ANIME𓆩ꨄ︎𓆪',
         nsfw: '𓆩ꨄ︎𓆪MENU NSFW/+18𓆩ꨄ︎𓆪',
         funciones: '𓆩ꨄ︎𓆪MENU ON / OFF𓆩ꨄ︎𓆪',
         socket: '𓆩ꨄ︎𓆪MENU  SUB-BOTS𓆩ꨄ︎𓆪'
@@ -76,6 +77,7 @@ ${readMore}
         '𓆩ꨄ︎𓆪MENU HERRAMIENTAS𓆩ꨄ︎𓆪',
         '𓆩ꨄ︎𓆪MENU JUEGOS RPG𓆩ꨄ︎𓆪',
         '𓆩ꨄ︎𓆪MENU GACHA/RW𓆩ꨄ︎𓆪',
+        '𓆩ꨄ︎𓆪MENU ANIME𓆩ꨄ︎𓆪',
         '𓆩ꨄ︎𓆪MENU NSFW/+18𓆩ꨄ︎𓆪',
         '𓆩ꨄ︎𓆪MENU  SUB-BOTS𓆩ꨄ︎𓆪'
       ]
