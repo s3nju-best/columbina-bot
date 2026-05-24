@@ -22,7 +22,7 @@ export default {
         ai: '𓆩ꨄ︎𓆪INTELIGENCIA ARTIFICIAL𓆩ꨄ︎𓆪',
         downloader: '𓆩ꨄ︎𓆪MENU DESCARGAS𓆩ꨄ︎𓆪',
         descargas: '𓆩ꨄ︎𓆪MENU DESCARGAS𓆩ꨄ︎𓆪',
-        tools: '𓆩ꨄ︎𓆪MENU HERRAMIENTAS𓆩ꨄ︎𓆪',
+        utils: '𓆩ꨄ︎𓆪MENU HERRAMIENTAS𓆩ꨄ︎𓆪',
         buscador: '𓆩ꨄ︎𓆪MENU BUSCADORES𓆩ꨄ︎𓆪',
         rpg: '𓆩ꨄ︎𓆪MENU JUEGOS RPG𓆩ꨄ︎𓆪',
         gacha: '𓆩ꨄ︎𓆪MENU GACHA/RW𓆩ꨄ︎𓆪',
