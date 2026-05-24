@@ -36,6 +36,7 @@ async function reloadCommands(dir = path.join(__dirname, '..')) {
 
 export default {
   command: ['fix', 'update'],
+  category: 'owner',
   isOwner: true,
   run: async (client, m) => {
     exec('git pull', async (error, stdout, stderr) => {
