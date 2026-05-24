@@ -1,12 +1,12 @@
 import fetch from 'node-fetch'
 
 export default {
-  command: ['hentai'],
+  command: ['trapito'],
   category: 'nsfw',
 
   run: async (client, m) => {
     try {
-    const chatId = m.chat
+          const chatId = m.chat
 
       if (!db.data.chats[chatId]?.nsfw) {
         return m.reply(
@@ -14,7 +14,7 @@ export default {
         )
       }
       
-      const url = `${global.api?.url}/nsfw/random/hentai?key=${global.api?.key}`
+      const url = `${global.api?.url}/nsfw/random/trapito?key=${global.api?.key}`
 
       const response = await fetch(url)
       const json = await response.json()
@@ -29,22 +29,21 @@ export default {
         return await client.sendMessage(m.chat, { text: '❌ No se encontró imagen.' }, { quoted: m })
       }
 
-      // Configuración de las secciones del menú interactivo
       const sections = [
         {
           title: '🔥 SELECCIÓN NSFW',
           rows: [
-            { title: 'Hentai', description: 'Ver otra imagen hentai', id: '.hentai' },
+            { title: 'Trapitos', description: 'Ver otra imagen de trapos', id: '.trapito' },
             { title: 'Yuri', description: 'Ver contenido yuri', id: '.yuri' },
-            { title: 'Femboy', description: 'Ver contenido femboy', id: '.femboy' },
+            { title: 'Hentai', description: 'Ver contenido hentai', id: '.hentai' },
             { title: 'Loli', description: 'Ver contenido loli', id: '.loli' },
-            { title: 'Trapito', description: 'Ver contenido trapo', id: '.trapito' }
+            { title: 'femboy', description: 'Ver contenido de femboys', id: '.femboy' }
           ]
         }
       ]
 
       const buttonMessage = {
-        caption: '🔥 *Hentai Aleatorio*',
+        caption: '🔥 *IMG TRAPOS*',
         footer: columbina,
         headerType: 4,
         image: { url: imageUrl },

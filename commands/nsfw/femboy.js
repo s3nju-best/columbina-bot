@@ -1,25 +1,24 @@
 import fetch from 'node-fetch'
 
 export default {
-  command: ['hentai'],
+  command: ['femboy'],
   category: 'nsfw',
 
   run: async (client, m) => {
     try {
-    const chatId = m.chat
+        const chatId = m.chat
 
       if (!db.data.chats[chatId]?.nsfw) {
         return m.reply(
           '🌽 Los comandos de *NSFW* están desactivados en este grupo.'
         )
       }
-      
-      const url = `${global.api?.url}/nsfw/random/hentai?key=${global.api?.key}`
+        
+      const url = `${global.api?.url}/nsfw/random/femboy?key=${global.api?.key}`
 
       const response = await fetch(url)
       const json = await response.json()
-
-      if (!json.status) {
+          if (!json.status) {
         return await client.sendMessage(m.chat, { text: '❌ La API devolvió un error.' }, { quoted: m })
       }
 
@@ -29,22 +28,21 @@ export default {
         return await client.sendMessage(m.chat, { text: '❌ No se encontró imagen.' }, { quoted: m })
       }
 
-      // Configuración de las secciones del menú interactivo
       const sections = [
         {
           title: '🔥 SELECCIÓN NSFW',
           rows: [
-            { title: 'Hentai', description: 'Ver otra imagen hentai', id: '.hentai' },
+            { title: 'Femboy', description: 'Ver otra imagen de femboys', id: '.femboy' },
             { title: 'Yuri', description: 'Ver contenido yuri', id: '.yuri' },
-            { title: 'Femboy', description: 'Ver contenido femboy', id: '.femboy' },
-            { title: 'Loli', description: 'Ver contenido loli', id: '.loli' },
-            { title: 'Trapito', description: 'Ver contenido trapo', id: '.trapito' }
+            { title: 'Hentai', description: 'Ver contenido hentai', id: '.hentai' },
+            { title: 'Lolis', description: 'Ver contenido loli', id: '.loli' },
+            { title: 'Trapitos', description: 'Ver contenido de trapos', id: '.trapito' }
           ]
         }
       ]
 
       const buttonMessage = {
-        caption: '🔥 *Hentai Aleatorio*',
+        caption: '🔥 *IMG FEMBOY*',
         footer: columbina,
         headerType: 4,
         image: { url: imageUrl },

@@ -1,12 +1,12 @@
 import fetch from 'node-fetch'
 
 export default {
-  command: ['hentai'],
+  command: ['yuri'],
   category: 'nsfw',
 
   run: async (client, m) => {
     try {
-    const chatId = m.chat
+      const chatId = m.chat
 
       if (!db.data.chats[chatId]?.nsfw) {
         return m.reply(
@@ -14,7 +14,7 @@ export default {
         )
       }
       
-      const url = `${global.api?.url}/nsfw/random/hentai?key=${global.api?.key}`
+      const url = `${global.api?.url}/nsfw/random/yuri?key=${global.api?.key}`
 
       const response = await fetch(url)
       const json = await response.json()
@@ -34,9 +34,9 @@ export default {
         {
           title: '🔥 SELECCIÓN NSFW',
           rows: [
-            { title: 'Hentai', description: 'Ver otra imagen hentai', id: '.hentai' },
-            { title: 'Yuri', description: 'Ver contenido yuri', id: '.yuri' },
-            { title: 'Femboy', description: 'Ver contenido femboy', id: '.femboy' },
+            { title: 'Yuri', description: 'Ver otra imagen Yuri', id: '.yuri' },
+            { title: 'Femboy', description: 'Ver contenido yuri', id: '.femboy' },
+            { title: 'Hentai', description: 'Ver contenido hentai', id: '.hentai' },
             { title: 'Loli', description: 'Ver contenido loli', id: '.loli' },
             { title: 'Trapito', description: 'Ver contenido trapo', id: '.trapito' }
           ]
@@ -44,7 +44,7 @@ export default {
       ]
 
       const buttonMessage = {
-        caption: '🔥 *Hentai Aleatorio*',
+        caption: '🔥 *IMG YURI*',
         footer: columbina,
         headerType: 4,
         image: { url: imageUrl },
