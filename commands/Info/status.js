@@ -10,7 +10,7 @@ function getDefaultHostId() {
 
 export default {
   command: ['statusbot'],
-  category: 'info',
+  category: 'general',
   run: async (client, m) => {
 
     const hostId = getDefaultHostId()
