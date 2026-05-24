@@ -6,40 +6,30 @@ export default {
     try {
       const bots = []
 
-      // bot principal
       bots.push(client)
 
-      // subbots (columbina multi-session)
       if (global.conns && Array.isArray(global.conns)) {
         for (const bot of global.conns) {
-          if (bot?.user?.id) bots.push(bot)
+          if (bot && bot.user?.id) bots.push(bot)
         }
       }
 
-      // evitar duplicados
-      const seen = new Set()
-      const uniqueBots = bots.filter(b => {
-        const id = b?.user?.id
-        if (!id || seen.has(id)) return false
-        seen.add(id)
+      const seenBots = new Set()
+      const uniqueBots = bots.filter(bot => {
+        const id = bot?.user?.id
+        if (!id || seenBots.has(id)) return false
+        seenBots.add(id)
         return true
       })
 
-      let totalGlobalGroups = 0
-      let totalGlobalAdmins = 0
-
-      let text = `📊 *RESUMEN TOTAL DE GRUPOS (COLUMBINA)*\n\n`
+      let text = `TOTAL DE GRUPOS\n\n`
+      let totalGlobal = 0 // Variable para llevar la cuenta total
 
       for (const bot of uniqueBots) {
-        const botId = bot.user?.id
-
-        // 🔥 nombre del bot (lo importante que pediste)
-        const botName =
-          bot.user?.name ||
-          bot.user?.pushName ||
-          bot.user?.verifiedName ||
-          'Columbina Bot'
-
+        // Intentamos obtener el nombre del bot, si no lo tiene, usamos su número
+        const botId = bot.user.id.split(':')[0]
+        const botName = bot.user.name || botId
+        
         let groups = {}
 
         try {
@@ -48,42 +38,31 @@ export default {
           continue
         }
 
-        const groupList = Object.entries(groups)
+        const cantidadGrupos = Object.keys(groups).length
+        totalGlobal += cantidadGrupos // Sumamos los grupos de este bot al total
 
-        let botTotalGroups = groupList.length
-        let botAdminGroups = 0
-
-        for (const [, group] of groupList) {
-          const participants = group.participants || []
-
-          const me = participants.find(p => p.id === botId)
-          const isAdmin = me?.admin === 'admin' || me?.admin === 'superadmin'
-
-          if (isAdmin) botAdminGroups++
-        }
-
-        totalGlobalGroups += botTotalGroups
-        totalGlobalAdmins += botAdminGroups
-
-        text += `🤖 *${botName}*\n`
-        text += `📦 Total grupos: ${botTotalGroups}\n`
-        text += `👑 Admin en: ${botAdminGroups}\n`
-        text += `───────────────\n\n`
+        text += `Bot: ${botName}\n`
+        text += `Grupos: ${cantidadGrupos}\n\n`
       }
 
-      text =
-        `📊 *TOTAL GLOBAL*\n` +
-        `👥 Bots activos: ${uniqueBots.length}\n` +
-        `📦 Grupos totales: ${totalGlobalGroups}\n` +
-        `👑 Grupos admin: ${totalGlobalAdmins}\n\n` +
-        `━━━━━━━━━━━━━━━━━━\n\n` +
-        text
+      text += `Total de grupos en todos los bots: ${totalGlobal}`
 
-      await client.sendMessage(m.chat, { text })
+      // Enviamos el mensaje final usando columbina2
+      if (typeof columbina2 !== 'undefined') {
+        await columbina2(client, m, text, [], m)
+      } else if (typeof global.columbina2 !== 'undefined') {
+        await global.columbina2(client, m, text, [], m)
+      }
 
     } catch (err) {
       console.log(err)
-      m.reply('❌ Error al obtener los grupos de los bots')
+      
+      const errorMsg = 'Error al obtener los grupos de todos los bots'
+      if (typeof columbina2 !== 'undefined') {
+        await columbina2(client, m, errorMsg, [], m)
+      } else if (typeof global.columbina2 !== 'undefined') {
+        await global.columbina2(client, m, errorMsg, [], m)
+      }
     }
   }
 }
