@@ -1,6 +1,6 @@
 export default {
   command: ['restart'],
-  category: 'mod',
+  category: 'owner',
   isModeration: true,
   run: async (client, m) => {
     await client.reply(m.chat, `✎ Reiniciando el Socket...\n> *Espere un momento...*`, m)
