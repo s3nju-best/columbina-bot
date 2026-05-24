@@ -22,10 +22,14 @@ export default {
         return true
       })
 
-      let text = `📊 *TOTAL DE GRUPOS DE TODOS LOS BOTS*\n\n`
+      let text = `TOTAL DE GRUPOS\n\n`
+      let totalGlobal = 0 
 
       for (const bot of uniqueBots) {
-        const botId = bot.user.id
+        // Intentamos obtener el nombre del bot, si no lo tiene, usamos su número
+        const botId = bot.user.id.split(':')[0]
+        const botName = bot.user.name || botId
+        
         let groups = {}
 
         try {
@@ -34,29 +38,31 @@ export default {
           continue
         }
 
-        text += `🤖 *Bot:* ${botId}\n`
-        text += `📦 *Grupos:* ${Object.keys(groups).length}\n\n`
+        const cantidadGrupos = Object.keys(groups).length
+        totalGlobal += cantidadGrupos // Sumamos los grupos de este bot al total
 
-        let i = 1
-
-        for (const [groupId, group] of Object.entries(groups)) {
-          const name = group.subject || 'Sin nombre'
-          const participants = group.participants || []
-          const me = participants.find(p => p.id === botId)
-          const isAdmin = me?.admin === 'admin' || me?.admin === 'superadmin'
-
-          text += `*${i++}. ${name}*\n`
-          text += `🆔 ${groupId}\n`
-          text += `👑 Admin: ${isAdmin ? 'Sí' : 'No'}\n\n`
-        }
-
-        text += `────────────────────\n\n`
+        text += `Bot: ${botName}\n`
+        text += `Grupos: ${cantidadGrupos}\n\n`
       }
 
-      await client.sendMessage(m.chat, { text })
+      text += `Total de grupos en todos los bots: ${totalGlobal}`
+
+      // Enviamos el mensaje final usando columbina2
+      if (typeof columbina2 !== 'undefined') {
+        await columbina2(client, m, text, [], m)
+      } else if (typeof global.columbina2 !== 'undefined') {
+        await global.columbina2(client, m, text, [], m)
+      }
+
     } catch (err) {
       console.log(err)
-      m.reply('❌ Error al obtener los grupos de todos los bots')
+      
+      const errorMsg = 'Error al obtener los grupos de todos los bots'
+      if (typeof columbina2 !== 'undefined') {
+        await columbina2(client, m, errorMsg, [], m)
+      } else if (typeof global.columbina2 !== 'undefined') {
+        await global.columbina2(client, m, errorMsg, [], m)
+      }
     }
   }
 }
