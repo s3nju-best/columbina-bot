@@ -7,7 +7,7 @@ const dirname = path.dirname(filename)
 
 export default {
  command: ['cleansubs', 'limpiarsubs', 'clearsubs', 'clear2'],
- category: 'mod',
+ category: 'owner',
  isModeration: true,
  run: async (client, m) => {
   try {
