@@ -6,14 +6,17 @@ export default {
     try {
       const bots = []
 
+      // bot principal
       bots.push(client)
 
+      // subbots (columbina multi-session)
       if (global.conns && Array.isArray(global.conns)) {
         for (const bot of global.conns) {
           if (bot?.user?.id) bots.push(bot)
         }
       }
 
+      // evitar duplicados
       const seen = new Set()
       const uniqueBots = bots.filter(b => {
         const id = b?.user?.id
@@ -30,6 +33,7 @@ export default {
       for (const bot of uniqueBots) {
         const botId = bot.user?.id
 
+        // 🔥 nombre del bot (lo importante que pediste)
         const botName =
           bot.user?.name ||
           bot.user?.pushName ||
@@ -61,15 +65,18 @@ export default {
         totalGlobalGroups += botTotalGroups
         totalGlobalAdmins += botAdminGroups
 
-        text += `🍃 *${botName}*\n`
-        text += `> *GRUPOS:* ${botTotalGroups}\n`
-        text += `> --------------------------------------------\n`
+        text += `> *${botName}*\n`
+        text += `> Total grupos: ${botTotalGroups}\n`
+        text += `> Admin en: ${botAdminGroups}\n`
+        text += `> ───────────────\n`
       }
 
       text =
-        `> *BOTS ACTIVOS:*: ${uniqueBots.length}\n` +
-        `> *GRUPOS TOTALES:*  ${totalGlobalGroups}\n` +
-        `> --------------------------------------------\n` +
+ 
+        `> Bots activos: ${uniqueBots.length}\n` +
+        `> Grupos totales: ${totalGlobalGroups}\n` +
+        `> Grupos admin: ${totalGlobalAdmins}\n\n` +
+        `> ━━━━━━━━━━━━━━━━━━\n` +
         text
 
       await client.sendMessage(m.chat, { text })
