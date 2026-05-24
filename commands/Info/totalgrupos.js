@@ -1,6 +1,6 @@
 export default {
   command: ['totalgrupos', 'allgroups', 'gruposall'],
-  category: 'general',
+  category: 'info',
 
   run: async (client, m) => {
     try {
@@ -28,7 +28,7 @@ export default {
       let totalGlobalGroups = 0
       let totalGlobalAdmins = 0
 
-      let text = `> *TOTAL GRUPOS BOTS*\n`
+      let text = `📊 *RESUMEN TOTAL DE GRUPOS (COLUMBINA)*\n\n`
 
       for (const bot of uniqueBots) {
         const botId = bot.user?.id
@@ -65,18 +65,18 @@ export default {
         totalGlobalGroups += botTotalGroups
         totalGlobalAdmins += botAdminGroups
 
-        text += `> *${botName}*\n`
-        text += `> Total grupos: ${botTotalGroups}\n`
-        text += `> Admin en: ${botAdminGroups}\n`
-        text += `> ───────────────\n`
+        text += `🤖 *${botName}*\n`
+        text += `📦 Total grupos: ${botTotalGroups}\n`
+        text += `👑 Admin en: ${botAdminGroups}\n`
+        text += `───────────────\n\n`
       }
 
       text =
- 
-        `> Bots activos: ${uniqueBots.length}\n` +
-        `> Grupos totales: ${totalGlobalGroups}\n` +
-        `> Grupos admin: ${totalGlobalAdmins}\n\n` +
-        `> ━━━━━━━━━━━━━━━━━━\n` +
+        `📊 *TOTAL GLOBAL*\n` +
+        `👥 Bots activos: ${uniqueBots.length}\n` +
+        `📦 Grupos totales: ${totalGlobalGroups}\n` +
+        `👑 Grupos admin: ${totalGlobalAdmins}\n\n` +
+        `━━━━━━━━━━━━━━━━━━\n\n` +
         text
 
       await client.sendMessage(m.chat, { text })
