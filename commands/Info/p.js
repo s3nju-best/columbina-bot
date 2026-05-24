@@ -2,7 +2,7 @@ import moment from "moment";
 
 export default {
   command: ["ping", "p"],
-  category: "info",
+  category: "general",
   run: async (client, m, args, { prefix }) => {
     const start = Date.now();
     const txct = "⏰ Cargando ping…"
